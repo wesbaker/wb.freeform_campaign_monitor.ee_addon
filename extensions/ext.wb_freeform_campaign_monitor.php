@@ -7,7 +7,7 @@ class Wb_freeform_campaign_monitor
 	
 	var $name           = 'WB Freeform Campaign Monitor';
 	var $class_name     = 'Wb_freeform_campaign_monitor';
-	var $version        = '1.0';
+	var $version        = '1.0.1';
 	var $description    = 'After receiving a form entry, sends it to Campaign Monitor';
 	var $settings_exist = 'y';
 	var $docs_url       = '';
