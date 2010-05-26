@@ -131,6 +131,8 @@ class Wb_freeform_campaign_monitor
 
 			$result = $cm->subscriberAdd($data[$this->settings['email_field']], $data[$this->settings['name_field']]);
 		}
+		
+		return $data;
 	}
 	
 	/**
