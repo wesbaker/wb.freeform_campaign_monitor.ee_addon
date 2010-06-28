@@ -21,6 +21,22 @@ $L = array(
 
 'email_field' => 'Email Input Field Name', 
 
+'custom_field_1' => 'Custom Field 1',
+
+'custom_field_1_tag' => 'Custom Field 1 Tag <small style="display:block; margin-top:6px; font-weight:normal>You can find the tag name in &ldquo;Your existing field&rdquo; under Personalization Tag under Custom Fields.</small>',
+
+'custom_field_2' => 'Custom Field 2',
+
+'custom_field_2_tag' => 'Custom Field 2 Tag <small style="display:block; margin-top:6px; font-weight:normal>You can find the tag name in &ldquo;Your existing field&rdquo; under Personalization Tag under Custom Fields.</small>',
+
+'custom_field_3' => 'Custom Field 3',
+
+'custom_field_3_tag' => 'Custom Field 3 Tag <small style="display:block; margin-top:6px; font-weight:normal>You can find the tag name in &ldquo;Your existing field&rdquo; under Personalization Tag under Custom Fields.</small>',
+
+'custom_field_4' => 'Custom Field 4',
+
+'custom_field_4_tag' => 'Custom Field 4 Tag <small style="display:block; margin-top:6px; font-weight:normal>You can find the tag name in &ldquo;Your existing field&rdquo; under Personalization Tag under Custom Fields.</small>',
+
 // END
 ''=>''
 );

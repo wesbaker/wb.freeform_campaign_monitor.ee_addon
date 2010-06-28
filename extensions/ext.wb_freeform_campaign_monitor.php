@@ -7,7 +7,7 @@ class Wb_freeform_campaign_monitor
 	
 	var $name           = 'WB Freeform Campaign Monitor';
 	var $class_name     = 'Wb_freeform_campaign_monitor';
-	var $version        = '1.0.1';
+	var $version        = '1.1';
 	var $description    = 'After receiving a form entry, sends it to Campaign Monitor';
 	var $settings_exist = 'y';
 	var $docs_url       = '';
@@ -34,6 +34,14 @@ class Wb_freeform_campaign_monitor
 		$settings['switch_field_value'] = '';
 		$settings['name_field'] = 'name';
 		$settings['email_field'] = 'email';
+		$settings['custom_field_1'] = '';
+		$settings['custom_field_1_tag'] = '';
+		$settings['custom_field_2'] = '';
+		$settings['custom_field_2_tag'] = '';
+		$settings['custom_field_3'] = '';
+		$settings['custom_field_3_tag'] = '';
+		$settings['custom_field_4'] = '';
+		$settings['custom_field_4_tag'] = '';
 		return $settings;
 	}
 	
@@ -103,21 +111,6 @@ class Wb_freeform_campaign_monitor
 	{		
 		global $IN;
 		
-		// Array
-		// (
-		//     [author_id] => 0
-		//     [group_id] => 3
-		//     [ip_address] => 127.0.0.1
-		//     [entry_date] => 1274812392
-		//     [edit_date] => 1274812392
-		//     [status] => open
-		//     [form_name] => contest
-		//     [name] => Wes Baker
-		//     [email] => wcbaker@gmail.com
-		//     [review_date] => 5/20/2010
-		//     [apple_store_nickname] => wesbaker
-		// )
-		
 		if ($IN->GBL($this->settings['switch_field'], 'POST') == $this->settings['switch_field_value'] &&
 			$this->_valid_email($data[$this->settings['email_field']]) ) 
 		{
@@ -129,7 +122,18 @@ class Wb_freeform_campaign_monitor
 			$list_id = $this->settings['list_id'];
 			$cm = new CampaignMonitor( $api_key, $client_id, $campaign_id, $list_id );
 
-			$result = $cm->subscriberAdd($data[$this->settings['email_field']], $data[$this->settings['name_field']]);
+			$custom_field_values = array();
+			$custom_fields = array('custom_field_1' => 'custom_field_1_tag', 
+								   'custom_field_2' => 'custom_field_2_tag', 
+								   'custom_field_3' => 'custom_field_3_tag', 
+								   'custom_field_4' => 'custom_field_4_tag');
+			foreach ($custom_fields as $field => $tag) {
+				if ($this->settings[$field] != "" AND $this->settings[$tag] != "") {
+					$custom_fields_values[$this->settings[$tag]] = $data[$this->settings[$field]];
+				}
+			}
+			
+			$result = $cm->subscriberAddWithCustomFields($data[$this->settings['email_field']], $data[$this->settings['name_field']], $custom_fields_values);
 		}
 		
 		return $data;
