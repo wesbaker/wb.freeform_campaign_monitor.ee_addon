@@ -7,7 +7,7 @@ class Wb_freeform_campaign_monitor
 	
 	var $name           = 'WB Freeform Campaign Monitor';
 	var $class_name     = 'Wb_freeform_campaign_monitor';
-	var $version        = '1.1';
+	var $version        = '1.2';
 	var $description    = 'After receiving a form entry, sends it to Campaign Monitor';
 	var $settings_exist = 'y';
 	var $docs_url       = '';
@@ -127,13 +127,18 @@ class Wb_freeform_campaign_monitor
 								   'custom_field_2' => 'custom_field_2_tag', 
 								   'custom_field_3' => 'custom_field_3_tag', 
 								   'custom_field_4' => 'custom_field_4_tag');
+								
 			foreach ($custom_fields as $field => $tag) {
 				if ($this->settings[$field] != "" AND $this->settings[$tag] != "") {
-					$custom_fields_values[$this->settings[$tag]] = $data[$this->settings[$field]];
+					$custom_fields_values[$this->settings[$tag]] = utf8_encode($data[$this->settings[$field]]);
 				}
 			}
 			
-			$result = $cm->subscriberAddWithCustomFields($data[$this->settings['email_field']], $data[$this->settings['name_field']], $custom_fields_values);
+			$result = $cm->subscriberAddAndResubscribeWithCustomFields(
+				utf8_encode($data[$this->settings['email_field']]), 
+				utf8_encode($data[$this->settings['name_field']]), 
+				$custom_fields_values
+			);
 		}
 		
 		return $data;
