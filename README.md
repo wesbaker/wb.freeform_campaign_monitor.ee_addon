@@ -1,7 +1,6 @@
 WB Freeform Campaign Monitor
 ============================
 
-**Date:** 2010-05-25<br />
 **Author:** Wes Baker<br />
 **Mail:** wes@wesbaker.com<br />
 **Web:** [http://wesbaker.com](http://wesbaker.com/)
