@@ -19,6 +19,7 @@ class Wb_freeform_campaign_monitor
 	{
 		global $SESS;
 		$this->settings = $settings;
+		$this->_get_settings();
 	}
 	
 	// --------------------------------
@@ -49,7 +50,6 @@ class Wb_freeform_campaign_monitor
 	{
 		global $DSP, $LANG, $IN, $PREFS;
 	
-		$this->_get_settings();
 		$settings = isset($this->settings[$PREFS->ini('site_id')]) ? $this->settings[$PREFS->ini('site_id')] : array();
 	
 		$DSP->crumbline = TRUE;
