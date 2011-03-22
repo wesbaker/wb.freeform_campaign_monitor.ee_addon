@@ -239,15 +239,19 @@ class Wb_freeform_campaign_monitor
 								   'custom_field_4' => 'custom_field_4_tag');
 								
 			foreach ($custom_fields as $field => $tag) {
-				if ($settings[$field] != "" AND $settings[$tag] != "") {
-					$custom_fields_values[$settings[$tag]] = utf8_encode($data[$settings[$field]]);
+				if (
+					isset($settings[$field]) AND $settings[$field] != "" 
+					AND isset($settings[$tag]) AND $settings[$tag] != ""
+				) 
+				{
+					$custom_field_values[$settings[$tag]] = utf8_encode($data[$settings[$field]]);
 				}
 			}
 			
 			$result = $cm->subscriberAddAndResubscribeWithCustomFields(
 				utf8_encode($data[$settings['email_field']]), 
 				utf8_encode($data[$settings['name_field']]), 
-				$custom_fields_values
+				$custom_field_values
 			);
 		}
 		
