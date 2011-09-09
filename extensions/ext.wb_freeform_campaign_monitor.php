@@ -148,7 +148,11 @@ class Wb_freeform_campaign_monitor
 		global $DB;
 		
 		$query =  $DB->query('SELECT settings FROM exp_extensions WHERE class = "' . $this->class_name . '";');
-		$this->settings = unserialize($query->row['settings']);
+		
+		if ($query->num_rows > 0)
+		{
+			$this->settings = unserialize($query->row['settings']);
+		}
 	}
 	
 	
